@@ -1,11 +1,10 @@
-from fastapi import FastAPI, UploadFile, File
-from fastapi.middleware.cors import CORSMiddleware
+from fastapi import FastAPI
 from pydantic import BaseModel
-from typing import List
+from textblob import TextBlob
+from fastapi.middleware.cors import CORSMiddleware
 import time
-from transformers import pipeline
-import bs4
-import requests
+import random
+# NO nltk downloads here!
 
 app = FastAPI()
 origins = [
