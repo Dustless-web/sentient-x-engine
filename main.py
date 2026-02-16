@@ -4,6 +4,9 @@ from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 import time
 import random
+import torch
+# Tell PyTorch to strictly limit its thread usage so it doesn't spike the RAM
+torch.set_num_threads(1)
 # NO nltk downloads here!
 
 app = FastAPI()
@@ -34,7 +37,8 @@ app.add_middleware(
 # --- NEURAL ENGINE INIT ---
 print("Loading Neural Engine...")
 # Using DistilBERT for fast, lightweight sentiment analysis
-analyzer = pipeline("sentiment-analysis", model="distilbert-base-uncased-finetuned-sst-2-english")
+# We explicitly set a smaller model and force it to run on the CPU to save RAM
+analyzer = pipeline("text-classification", model="bhadresh-savani/distilbert-base-uncased-emotion", device=-1)
 print("Neural Engine Online.")
 
 # --- HELPER FUNCTIONS ---
