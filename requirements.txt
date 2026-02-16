@@ -1,7 +1,6 @@
 fastapi
 uvicorn
-transformers
-torch
+textblob
 pydantic
-python-multipart
-scipy
+beautifulsoup4
+requests
