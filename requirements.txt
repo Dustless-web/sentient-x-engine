@@ -1,6 +1,7 @@
 fastapi
 uvicorn
-textblob
 pydantic
 beautifulsoup4
 requests
+transformers
+torch
